@@ -8,6 +8,8 @@ Rigid registration pipeline for Whole Slide Images (WSIs), including DISK keypoi
 
 Finetune the **DISK** keypoint detector on pathology/WSI data using reinforcement learning with identity-grid and affine rewards.
 
+**Code base.** This module is based on [cvlab-epfl/disk `train.py`](https://github.com/cvlab-epfl/disk/blob/master/train.py). This repository contains **only the modified or added code**; the full DISK training codebase is required (clone and merge or run from the original repo with these files overlaid).
+
 ### Structure
 
 | Path | Description |
@@ -37,6 +39,8 @@ python train_patch.py --experiment <exp_name> \
 ## 2. finetuning_LightGlue
 
 Finetune the **LightGlue** matcher (with a frozen DISK extractor) on affine-augmented patch pairs for WSI-style matching.
+
+**Code base.** This module is based on [cvg/glue-factory](https://github.com/cvg/glue-factory/tree/main/gluefactory). This repository contains **only the modified or added code**; the full glue-factory codebase is required (clone and merge or run from the original repo with these files overlaid).
 
 ### Structure
 
@@ -77,6 +81,8 @@ python -m finetune my_run --conf configs/disk+lightglue_affine.yaml data.data_di
 ## 3. registration
 
 Run **benchmark registration** with DISK + (LightGlue or CycleMatcher) on three datasets: **HyReCo** (HE/IHC), **ANHIR**, and **ACROBAT**.
+
+**Code base.** The model implementations in `registration/models/` (e.g. LightGlue, matchers) are from [cvg/LightGlue](https://github.com/cvg/LightGlue/tree/main/lightglue). Integrate or copy the LightGlue model code from that repository as needed to run the benchmarks.
 
 ### Structure
 
