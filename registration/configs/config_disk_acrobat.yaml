@@ -1,0 +1,21 @@
+ver: disk_lightglue
+result_save: False
+output_dir: ./outputs/benchmark_acrobat
+
+meta_data_path: None # TODO: acrobat_validation_points_public_1_of_1.csv
+data_dir: None # TODO: acrobat_validation_pyramid_1_of_1
+target_level: 3
+target_mpp: 8
+
+tile_size: 512
+max_num_keypoints: 512
+tiling: True
+local_refinement_top_k: 350
+
+extractor:
+  name: disk
+  weights: depth
+
+matcher:
+  name: lightglue
+  weights: None  # TODO: disk_lightglue_v0-1_arxiv.pth

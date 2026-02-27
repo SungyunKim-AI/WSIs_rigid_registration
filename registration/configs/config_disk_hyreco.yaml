@@ -1,0 +1,18 @@
+ver: disk_lightglue
+result_save: False
+output_dir: ./outputs/benchmark_hyreco
+
+data_dir: None # TODO: HyReCo dataset
+target_mpp: 8
+
+tile_size: 512
+max_num_keypoints: 512
+tiling: True
+local_refinement_top_k: 350
+
+extractor:
+  name: disk
+  weights: depth
+matcher:
+  name: lightglue
+  weights: None # TODO: disk_lightglue_v0-1_arxiv.pth

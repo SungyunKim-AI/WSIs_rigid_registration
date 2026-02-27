@@ -1,0 +1,20 @@
+ver: disk_lightglue
+result_save: False
+output_dir: ./outputs/benchmark_anhir
+
+data_dir: None # TODO: ANHIR dataset
+target_level: 3
+target_mpp: 8
+
+tile_size: 512
+max_num_keypoints: 512
+tiling: True
+local_refinement_top_k: 350
+
+extractor:
+  name: disk
+  weights: depth
+
+matcher:
+  name: lightglue
+  weights: None 

@@ -1,0 +1,46 @@
+data:
+    name: affines_patch
+    data_dir: None # TODO: Dataset directory
+    train_size: None # TODO: Number of training images
+    val_size: None # TODO: Number of validation images
+    batch_size: 128
+    num_workers: 4
+    affine:
+        color_jitter: True
+        mix_channel: True
+        max_translate: 0.2
+        max_rotate: 30
+        scale_range: [0.8, 1.2]
+        patch_shape: [512, 512]
+model:
+    name: two_view_pipeline
+    extractor:
+        name: extractors.disk_kornia
+        weights: None # TODO: DISK weights path
+        max_num_keypoints: 512
+        force_num_keypoints: True
+        detection_threshold: 0.0
+        trainable: False
+    ground_truth:
+        name: matchers.affine_matcher
+        th_positive: 1
+        th_negative: 2
+    matcher:
+        name: matchers.lightglue
+        weights: None # TODO: LightGlue weights path
+        filter_threshold: 0.1
+        input_dim: 128
+        flash: false
+        checkpointed: true
+train:
+    seed: 0
+    epochs: 30
+    log_every_iter: 100
+    eval_every_iter: 500
+    lr: 1e-5
+    lr_schedule:
+        start: 20
+        type: exp
+        on_epoch: true
+        exp_div_10: 10
+    plot: [5, '02_LightGlue.visualization.visualize_batch.make_match_figures']
