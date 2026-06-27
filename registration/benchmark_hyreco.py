@@ -190,7 +190,7 @@ class WSI_Registration:
 
         m_kpts0_warped = cv2.transform(m_kpts0.reshape(-1, 1, 2), global_affine).reshape(-1, 2)
         _, H_src, W_src = image0.shape
-        max_dist = min(H_src, W_src) / 2.0
+        max_dist = min(H_src, W_src) / 4.0
         
         refined_landmarks = []
         for idx, (pt_src, pt_tgt_est) in enumerate(zip(landmarks, src_landmarks_warped)):
