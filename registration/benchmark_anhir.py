@@ -190,7 +190,7 @@ class WSI_Registration:
         # VER 4.0 : pixel distance limit
         # Use 1/4 of image size as distance limit (m_kpts0 is in source image coordinate system)
         _, H_src, W_src = image0.shape
-        max_dist = min(H_src, W_src) / 2.0
+        max_dist = min(H_src, W_src) / 4.0
         
         refined_landmarks = []
         for idx, (pt_src, pt_tgt_est) in enumerate(zip(landmarks, src_landmarks_warped)):
